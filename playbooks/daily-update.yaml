@@ -1,5 +1,5 @@
 --- 
-- hosts: true
+- hosts: web_servers
   gather_facts: false
   tasks:
     - name: Update all packages
