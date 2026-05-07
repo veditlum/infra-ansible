@@ -1,5 +1,7 @@
 --- 
-- hosts: web_servers
+- name: Update and upgrade apt packages using shell module
+  hosts: farm-a
+  become: yes
   gather_facts: false
   tasks:
     - name: Update all packages
