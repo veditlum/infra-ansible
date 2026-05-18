@@ -1,5 +1,6 @@
 --- 
 - name: Update and upgrade apt packages using shell module
+  hosts: farm-au4
   become: yes
   gather_facts: false
   tasks:
