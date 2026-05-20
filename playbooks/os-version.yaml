@@ -1,20 +1,36 @@
 ---
 - name: Get version details
   hosts: farm_a
-  gather_facts: yes
+  gather_facts: true
   become: false
   tasks:
   - name: Distribution
-  # debug: msg=" distribution {{ ansible_distribution }} - os_family {{ ansible_os_family}} - distribution_version {{ansible_distribution_version}} - distribution_major_version {{ ansible_distribution_major_version }}"
-    debug: msg=" {{ ansible_facts['distribution'] }}"
+    # method 1:
+    #debug: msg=" distribution {{ ansible_distribution }} - os_family {{ ansible_os_family}} - distribution_version {{ansible_distribution_version}} - distribution_major_version {{ ansible_distribution_major_version }}"
+    
+    # method 2:
+    #debug: msg=" \n
+    #  distribution    {{ ansible_facts['distribution'] }} \n
+    #  version         {{ ansible_facts['distribution_version'] }} \n
+    #  major_version   {{ ansible_facts['distribution_major_version'] }} \n
+    #  os_family       {{ ansible_facts['os_family'] }} \n
+    #  architecture    {{ ansible_facts['architecture'] }} \n
+    #  kernel          {{ ansible_facts['kernel'] }} \n
+    #  machine         {{ ansible_facts['machine'] }} \n
+    #  processor       {{ ansible_facts['processor'] }} \n
+    #  python_version  {{ ansible_facts['python_version'] }} \n
+    #  "
 
-
-  #become: false
-  #gather_facts: false
-  #tasks:
-  #- name: System details
-  #  debug: msg="{{ item }}"
-  #  with_items: 
-  #  - "{{ ansible_distribution }}"
-  #  - "{{ ansible_distribution_version }}"
-  #  - "{{ ansible_distribution_major_version }}"
+    # method 3:
+    debug: 
+      msg: |
+        distribution    {{ ansible_facts['distribution'] }}
+        version         {{ ansible_facts['distribution_version'] }}
+        major_version   {{ ansible_facts['distribution_major_version'] }}
+        os_family       {{ ansible_facts['os_family'] }}
+        architecture    {{ ansible_facts['architecture'] }}
+        kernel          {{ ansible_facts['kernel'] }} 
+        machine         {{ ansible_facts['machine'] }}
+        processor       {{ ansible_facts['processor'] }}
+        python_version  {{ ansible_facts['python_version'] }}
+  
