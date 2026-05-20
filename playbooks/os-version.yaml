@@ -7,7 +7,7 @@
     - name: System details
       debug:
         msg: "{{ item }}"
-      loop:
+      with_items:
         - "{{ ansible_facts['distribution'] }}"
         - "{{ ansible_facts['distribution_version'] }}"
         - "{{ ansible_facts['distribution_major_version'] }}"
